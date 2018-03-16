@@ -48,13 +48,13 @@ export default class Company extends React.Component {
         let starttime = (tempDate.start_time + '').split(" ")[0];
         let endtime = (tempDate.end_time + '').split(" ")[0];
         return (
-            <div className="visitRecordWrap" id="fromHTMLtestdiv">
+            <div className="visitRecordWrap paddingTop" id="fromHTMLtestdiv">
                 <TableHeads
                     url={urls.wordMsg}
                     isHide={false}
                     tag={<h3 className="fn-left">我的客户</h3>}
                 ></TableHeads>
-                <div className="recordMain">
+                <div className="recordMain" style={{paddingBottom:"20px"}}>
                     <h2 style={{ letterSpacing: "1px", marginTop: "0.8rem" }}>{validate.getCookie("company_name")}</h2>
                     <p style={{ textAlign: "center" }}>
                         文件编号: {tempDate.document_id}  <span style={{ padding: "0 15px" }}></span>

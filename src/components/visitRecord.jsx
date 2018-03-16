@@ -41,8 +41,7 @@ export default class VisitRecord extends React.Component {
     }
     render() {
         return (
-            <div id="fromHTMLtestdiv">
-                <form className="visitRecordWrap">
+            <div id="fromHTMLtestdiv" className="visitRecordWrap paddingTop">
                     <TableHeads
                         url={urls.wordMsg}
                         isHide={false}
@@ -85,7 +84,6 @@ export default class VisitRecord extends React.Component {
                             </table>
                         </div>
                     </div>
-                </form>
             </div>
         )
     }

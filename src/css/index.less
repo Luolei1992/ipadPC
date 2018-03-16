@@ -132,6 +132,7 @@
         position: fixed;
         width: 100%;
         top: 0;
+        padding: 10px 0;
     }
     .mainWrap {
         overflow: hidden;
@@ -182,7 +183,7 @@
         }
         .mainWrapRight {
             width: 70%;
-            height: 100%;
+            // height: 100%;
             padding-top: 1.3rem;
             position: fixed;
             // overflow: scroll;
@@ -190,7 +191,7 @@
             .which {
                 text-align: right;
                 margin-top: .3rem;
-                margin-bottom: .2rem;
+                // margin-bottom: .2rem;
                 line-height: 22px;
                 padding-right: .292969rem;
                 input {
@@ -221,6 +222,10 @@
                 z-index: 1002;
                 top: 50%;
                 left: 65%;
+                -webkit-transform: translateX(-50%) translateY(-50%);
+                -moz-transform: translateX(-50%) translateY(-50%);
+                -ms-transform: translateX(-50%) translateY(-50%);
+                -o-transform: translateX(-50%) translateY(-50%);
                 transform: translateX(-50%) translateY(-50%);
                 border-radius: 5px;
                 .am-image-picker-list {
@@ -243,6 +248,7 @@
                     width: 100%;
                     min-height: 1.5rem;
                     padding: .097656rem;
+                    margin-top: 10px;
                     box-sizing: border-box;
                 }
                 button {
@@ -420,7 +426,7 @@
     position: relative;
     width: 100%;    
     height: 100%;
-    min-height: 768px;
+    min-height: 730px;
     padding-bottom: .976563rem;
     box-sizing: border-box;
     .recordMain {
@@ -506,7 +512,7 @@
                 }
                 .signatureTxt {
                     span {
-                        line-height: 20px;
+                        line-height: 28px;
                     }
                     position: relative;
                     #canvas {
@@ -529,14 +535,18 @@
                     .date {
                         position: absolute;
                         bottom: .292969rem;
-                        right: .292969rem;
-                        z-index: 10;
+                        right: 0;
+                        z-index: 105;
+                        input{
+                            border:0 none;
+                            width: 120px;
+                        }
                     }
                     .suggess {
                         padding: .488281rem;
                         padding-bottom: 0;
                         box-sizing: border-box;
-                        height: 2.6rem;
+                        height: 3.6rem;
                         overflow: hidden;
                         position: relative;
                         span {
@@ -661,7 +671,7 @@
             }
             .signatureTxt {
                 span {
-                    line-height: 20px;
+                    line-height: 18px;
                 }
                 position: relative;
                 #canvas {
@@ -684,13 +694,17 @@
                     position: absolute;
                     bottom: .292969rem;
                     right: .4rem;
-                    z-index: 10;
+                    z-index: 105;
+                    input{
+                        border:0 none;
+                        width: 120px;
+                    }
                 }
                 .suggess {
                     padding: .488281rem;
                     padding-bottom: 0;
                     box-sizing: border-box;
-                    height: 2.6rem;
+                    height: 3.6rem;
                     overflow: hidden;
                     position: relative;
                     span {
@@ -712,6 +726,10 @@
                         left: 50%;
                         top: .3rem;
                         width: 10.546875rem;
+                        -webkit-transform: translateX(-50%);
+                        -moz-transform: translateX(-50%);
+                        -ms-transform: translateX(-50%);
+                        -o-transform: translateX(-50%);
                         transform: translateX(-50%);
                     }
                     .midDivTop {
@@ -739,15 +757,15 @@
             ul{
                 li {
                     width: 1.953125rem;
-                    height: 2.929688rem;
+                    height: 2.8rem;
                     font-size: 12px;
                     background-color: #EEEEEE;
                     padding-left: 0;
-                    margin: .390625rem;
+                    margin: .3rem;
                     text-align: center;
                     padding-top: 1rem;
                     p {
-                        line-height: .390625rem;                    }
+                        line-height: .4rem;                    }
                 }
             }
         }
@@ -832,7 +850,7 @@
                 .mid {
                     position: relative;
                     // width: 8.5rem;
-                    width: 50%;
+                    width: 49%;
                     table {
                         p {
                             color: #8D8D8D;
@@ -931,7 +949,21 @@
         tr {
             td {
                 line-height: 0.5rem;
-                width: 25%;
+            }
+            td:nth-child(1) {
+                width: 10%;
+            }
+            td:nth-child(2) {
+                width: 35%;
+            }
+            td:nth-child(3) {
+                width: 20%;
+            }
+            td:nth-child(4) {
+                width: 20%;
+            }
+            td:nth-child(5) {
+                width: 15%;
             }
         }        
     }
@@ -1021,6 +1053,7 @@
     color: #fff;
     position: relative;
     z-index: 10;
+    padding: 10px 0;
     img {
         margin: .14rem .5rem 0 0;
     }
@@ -1030,6 +1063,10 @@
     h3 {
         position: absolute;
         left: 50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
         transform: translateX(-50%);
         font-size: 26px;
         line-height: 1rem;
@@ -1061,7 +1098,7 @@
 .tableBottom {
     position: fixed;
     bottom: 0;
-    width: 100%;
+    width: 968px;
     z-index: 1000;
     background-color: #000;
     height: .976563rem;
@@ -1118,8 +1155,8 @@
         .personalLinkList {
             ul {
                 li {
-                    height: .6rem;
-                    line-height:.6rem; 
+                    height: .8rem;
+                    line-height:.8rem; 
                     background-color: #F5F5F5;
                     margin: .078125rem;
                     input {
@@ -1156,6 +1193,7 @@
             flex: none;
             width: 1.5rem;
             height: 1.5rem;
+            margin: 0 5px;
         }
         .am-image-picker-list .am-flexbox {
             float: left;
@@ -1165,6 +1203,10 @@
         .am-image-picker-item {
             position: relative;
             top: 0;
+            -webkit-transform: translateX(0);
+            -moz-transform: translateX(0);
+            -ms-transform: translateX(0);
+            -o-transform: translateX(0);
             transform: translateX(0);
             .am-image-picker-item-content {
                 width: 1.5rem;
@@ -1188,11 +1230,11 @@
         ul {
             li {
                 span {
-                    width: 35%;
+                    width: 30%;
                     display: inline-block;
                 }
                 input {
-                    width: 65%;
+                    width: 70%;
                 }
             }
         }
@@ -1204,6 +1246,7 @@
     position: absolute;
     right: 1.2rem;
     margin-top:0.05rem;
+    z-index: 100;
 }
 #mainWrap {
     // padding-top: 1.3rem;
@@ -1239,6 +1282,7 @@
         left: 0;
     }
 }
+
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
     html:not([data-scale]) .am-list-body::before,
     html:not([data-scale]) .am-list-body::after {
@@ -1263,23 +1307,53 @@
 .newSurveyCompany {
     width: 300px !important;
 }
-
+.planLis.personalLinkWrap.am-modal-transparent {
+    width: 320px;
+    .am-list-item {
+        padding-left: 0;
+        background-color: #f5f5f5;
+        .am-textarea-control {
+            // padding:0;
+            textarea{
+                font-size: 15px;
+            }
+        }
+    }
+}
 .customsLists.visitRecordWrap{
     padding-bottom: 0px!important;
 }
 .demo-content {
     background-color: #000;
 }
+.am-modal-transparent.addPersonalDetail {
+    width: 280px !important;
+}
 //自定义动画
 .animatePage {
     animation: myfirst 0.8s;
 }
+.eclipsLine {
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    // display: -webkit-box;
+    // -webkit-line-clamp: 4;
+    // -webkit-box-orient: vertical;
+}
 @keyframes myfirst {
     from {
+        -webkit-transform: translateX(150px);
+        -moz-transform: translateX(150px);
+        -ms-transform: translateX(150px);
+        -o-transform: translateX(150px);
         transform: translateX(150px);
         opacity: 0.5;
     }
     to {
+        -webkit-transform: translateX(0px);
+        -moz-transform: translateX(0px);
+        -ms-transform: translateX(0px);
+        -o-transform: translateX(0px);
         transform: translateX(0px);
         opacity: 1;
     }
@@ -1309,6 +1383,69 @@
         transform: translateX(0px);
         opacity: 1;
     }
+}
+.animatePageR {
+    animation: myfirstR 0.6s;
+}
+@keyframes myfirstR{
+    from {
+        transform: scale(0.5);
+        opacity: 0.5;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+.animatePageS {
+    animation: myfirstS 0.8s;
+}
+@keyframes myfirstS{
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+//pc兼容css
+::-webkit-scrollbar {
+    display: none;
+    width: 0;
+}
+.loginIpt.midCenterFull {
+    .am-button-primary {
+        border:1px solid #c51e46 !important;
+    }
+}
+#mainWrap {
+    width:972px;
+    height:730px;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    position:absolute;
+    top:50%;
+    margin-top:-365px;
+    left:50%;
+    margin-left:-486px;
+    overflow:hidden;
+}
+// @media screen and (max-width: 1024px) {
+//     #mainWrap {
+//         -webkit-transform: scale(0.8);
+//         -moz-transform: scale(0.8);
+//         -ms-transform: scale(0.8);
+//         -o-transform: scale(0.8);
+//         transform: scale(0.8);
+//     }
+// }
+.paddingTop {
+    padding-top: 1.3rem !important;
+    border:0 none !important;
+    height: auto !important;
 }
 
 

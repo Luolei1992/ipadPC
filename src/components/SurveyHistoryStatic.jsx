@@ -34,7 +34,7 @@ export default class SurveyHistoryStatic extends React.Component {
     componentDidMount () {
         runPromise('get_survey_info', {     //调研详细
             // "gd_project_id": this.props.state.baseFlagId
-            "gd_project_id": validate.getCookie("baseId")
+            "gd_company_id": validate.getCookie("baseId")
         }, this.handleProjectGet, false, "post");
     }
     clearAll = function () {
@@ -55,14 +55,13 @@ export default class SurveyHistoryStatic extends React.Component {
     }
     render(){
         return (
-            <div id="fromHTMLtestdiv">
-                <form className="visitRecordWrap">
+            <div id="fromHTMLtestdiv" className="visitRecordWrap paddingTop" style={{padding:"1.5rem"}}>
                     <TableHeads 
                         url={urls.wordMsg} 
                         isHide={false} 
                         tag={<h3 className="fn-left">调研档案</h3>}
                     ></TableHeads>
-                    <div className="recordMain">
+                    <div className="recordMain" style={{padding:"0"}}>
                         <h2 style={{ letterSpacing: "1px", marginTop: "0.8rem" }}>{decodeURIComponent(validate.getCookie("company_name"))}</h2>
                         <p style={{ textAlign: "center" }}>
                             文件编号: {this.state.companyDetail.document_id}  <span style={{ padding: "0 15px" }}></span>
@@ -237,7 +236,6 @@ export default class SurveyHistoryStatic extends React.Component {
                             </table>
                         </div>
                     </div>
-                </form>
             </div>
             
         )

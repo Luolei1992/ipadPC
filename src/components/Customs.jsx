@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from 'react-dom';
-import QueueAnim from 'rc-queue-anim';
 import { hashHistory } from "react-router";
 import { TableHeada, Customs, noLogin, Customs2} from './templates';
 import { Modal, List, Toast, ListView} from 'antd-mobile';
@@ -24,7 +23,8 @@ function MyBody(props) {
 let realData = [];
 let index = realData.length - 1;
 let realDataLength = realData.length;
-let NUM_ROWS = 5;
+const NUM_ROWS = 5; //循环长度
+let real_NUM_ROWS = 5;
 let pageIndex = 0;
 
 export default class Custom extends React.Component {
@@ -34,16 +34,16 @@ export default class Custom extends React.Component {
         const dataSource = new ListView.DataSource({
             rowHasChanged: (row1, row2) => row1 !== row2,
         });
-        this.genData = (pIndex = 0, NUM_ROWS, data) => {
+        this.genData = (pIndex = 0, real_NUM_ROWS, data) => {
             const dataBlob = {};
-            for (let i = 0; i < NUM_ROWS; i++) {
+            for (let i = 0; i < real_NUM_ROWS; i++) {
                 const ii = (pIndex * NUM_ROWS) + i;
                 dataBlob[`${ii}`] = data[i];
             }
             return dataBlob;
         };
         this.state = {
-            dataSource: dataSource.cloneWithRows(JSON.parse(localStorage.getItem("customs")) ? JSON.parse(localStorage.getItem("customs")) : {} ),
+            dataSource: dataSource.cloneWithRows(JSON.parse(sessionStorage.getItem("customs")) ? JSON.parse(sessionStorage.getItem("customs")) : {} ),
             isLoading: true,
             height: document.documentElement.clientHeight,
             hasMore: true, //是否有更多的数据
@@ -52,8 +52,8 @@ export default class Custom extends React.Component {
             animate:true,
             modal: false,
             modal1: false,
-            type:"add_time",
-            order: "全部",
+            type:"1",
+            order: "合作中",
             check: "全部",
             company: "",
             job: "",
@@ -69,7 +69,8 @@ export default class Custom extends React.Component {
             finishTime: "",
             give: "",
             id:"",
-            e:""
+            e:"",
+            work_status:""
         },
         this.handleProjectGet = (res) => {
             // console.log(res);
@@ -77,18 +78,18 @@ export default class Custom extends React.Component {
                 realData = res.data.item_list;
                 index = realData.length - 1;
                 realDataLength = res.data.item_list.length;
-                NUM_ROWS = realDataLength;
+                real_NUM_ROWS = realDataLength;
                 if (pageIndex == 0) {
                     this.rData = {};
                     this.rData = { ...this.rData, ...this.genData(pageIndex++, realDataLength, res.data.item_list) };
-                    localStorage.setItem("customs", JSON.stringify(realData))
+                    sessionStorage.setItem("customs", JSON.stringify(realData))
                 } else {
                     this.rData = { ...this.rData, ...this.genData(pageIndex++, realDataLength, res.data.item_list) };
                 }
                 // this.rData = { ...this.rData, ...this.genData(pageIndex++, realDataLength, res.data.item_list) };
                 this.setState({
                     dataSource: this.state.dataSource.cloneWithRows(this.rData),
-                    hasMore: res.data.total_pages > pageIndex ? true : false,
+                    hasMore: res.data.total_count > pageIndex * NUM_ROWS ? true : false,
                     isLoading: false,
                     data:res.data.item_list
                 })
@@ -137,11 +138,11 @@ export default class Custom extends React.Component {
     }
     componentDidMount() {
         // Set the appropriate height
-        setTimeout(() => this.setState({
-            // height: this.state.height - ReactDOM.findDOMNode(this.refs.lv).offsetTop,
-            height: this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop,
-        }), 100);
-        this.getProjectLis("add_time");
+        // setTimeout(() => this.setState({
+        //     // height: this.state.height - ReactDOM.findDOMNode(this.refs.lv).offsetTop,
+        //     height: this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop,
+        // }), 100);
+        this.getProjectLis("1");
         // document.getElementById("mainWrap").style.marginTop
     }
     componentDidUpdate(){
@@ -158,8 +159,9 @@ export default class Custom extends React.Component {
             "type": "-3",
             "offset": offset,
             "limit": 5,
-            "sort": type,
-            "choose": 0
+            "sort": "add_time",
+            "choose": 0,
+            "work_status":type
         }, this.handleProjectGet, true, "post");
     }
     addPersonalMsg=()=>{
@@ -263,10 +265,9 @@ export default class Custom extends React.Component {
                                     this.state.show2 ? this.setState({ show2: false }) : "";
                                 }}>{this.state.order} <i className="iconfont icon-tubiao-"></i></span>
                                 <ul style={{ display: this.state.show ? "block" : "none" }}>
-                                    <li onClick={(e) => { this.changeOrder(e,"") }}>全部</li>
-                                    <li onClick={(e) => { this.changeOrder(e,"start_time") }}>最新合作</li>
-                                    <li onClick={(e) => { this.changeOrder(e,"end_time") }}>即将过期</li>
-                                    <li onClick={(e) => { this.changeOrder(e,"score") }}>评价高低</li>
+                                    <li onClick={(e) => { this.changeOrder(e,"0") }}>全部</li>
+                                    <li onClick={(e) => { this.changeOrder(e,"1") }}>合作中</li>
+                                    <li onClick={(e) => { this.changeOrder(e,"2") }}>已过期</li>
                                 </ul>
                             </div>
                             {/* <span style={{ marginLeft: "0.5rem" }}>筛选：</span>
@@ -384,14 +385,14 @@ export default class Custom extends React.Component {
                     // renderHeader={() => <span>Pull to refresh</span>}
                         //     renderFooter={() => (<div style={{ padding: "20px", textAlign: 'center', display: this.state.isLoading ? 'block' : 'none' }}>
                         // {this.state.isLoading ? '加载中...' : null}
-                                renderFooter={() => (<div style={{ padding: "20px", textAlign: 'center' }}>
+                                renderFooter={() => (<div style={{ padding: "10px", textAlign: 'center' }}>
                                     {this.state.isLoading ? '加载中...' : '加载完成'}
                     </div>)}
                     renderBodyComponent={() => <MyBody />}
                     renderRow={row}
                     style={{
                         // height: this.state.height,
-                        height: "661px",
+                        height: "625px",
                         overflow: 'auto'
                     }}
                     onEndReached={this.onEndReached}

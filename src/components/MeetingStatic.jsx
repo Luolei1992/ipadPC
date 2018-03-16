@@ -35,8 +35,9 @@ export default class MeetingStatic extends React.Component {
     render() {
         return (
             <div id="fromHTMLtestdiv">
-                <form className="visitRecordWrap">
+                <form className="visitRecordWrap" style={{height:"730px",overflow:"auto"}}>
                     <TableHeads url={urls.wordMsg} isHide={true}></TableHeads>
+                    <div style={{ height: "1.3rem", position: "relative", width: "100%" }}></div>                    
                     <img src={this.state.meetingShow.signed_file_path} style={{ width: "100%", marginTop: "-1.5rem" }} />
                 </form>
             </div>

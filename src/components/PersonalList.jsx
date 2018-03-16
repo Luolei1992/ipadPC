@@ -28,7 +28,7 @@ export default class PersonalList extends React.Component {
     }
     render() {
         return (
-            <div className="visitRecordWrap">
+            <div className="visitRecordWrap paddingTop">
                 <TableHeads url={urls.wordMsg} isHide={false} tag={<h3>联系人</h3>}></TableHeads>
                 <div className="recordMain">
                     <div className="tableDetails">

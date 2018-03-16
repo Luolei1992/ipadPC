@@ -26,7 +26,6 @@ export default class Login extends React.Component {
             codeNum: 2
         },
         this.handleSend=(res)=>{
-            console.log(res);
             if(res.success) {
                 validate.setCookie('user_id', res.data.id);
                 validate.setCookie('user_name', res.data.real_name);
@@ -47,6 +46,12 @@ export default class Login extends React.Component {
                 pathname: '/',
             });
         };
+        document.onkeydown = (event) => {
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode == 13) { // enter 键
+                this.onLogin();//要做的事情
+            }
+        }; 
     }
     onLogin = () => {
         runPromise("login", {

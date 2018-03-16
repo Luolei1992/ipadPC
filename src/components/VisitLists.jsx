@@ -39,7 +39,7 @@ export default class VisitList extends React.Component {
     }
     componentDidMount() {
         runPromise('get_record_list', {
-            "gd_company_id": GetLocationParam('id') || validate.getCookie('baseId'),
+            "gd_project_id": validate.getCookie('project_id'),
             "offset": "0",
             "limit": "20"
         }, this.handleBackVisitGet, true, "post");
@@ -51,8 +51,7 @@ export default class VisitList extends React.Component {
     }
     render() {
         return (
-            <div id="fromHTMLtestdiv">
-                <form className="visitRecordWrap">
+            <div id="fromHTMLtestdiv" className="visitRecordWrap paddingTop">
                     <TableHeads url={urls.wordMsg} isHide={false} tag={<h3>走访记录</h3>}></TableHeads>
                     <div className="recordMain">
                         <h2 style={{ letterSpacing: "1px", marginTop: "0.8rem" }}>{validate.getCookie('company_name')}</h2>
@@ -66,7 +65,18 @@ export default class VisitList extends React.Component {
                                 {
                                     this.state.backVisit.item_list.map((value) => (
                                         <Link to={'/sceneStatic?id='+value.id}>
-                                            <li>
+                                            <li style={{position:"relative"}}>
+                                                {
+                                                    value.signed_file_path ? <i className="iconfont icon-biaoji2"
+                                                        style={{
+                                                            display: "inline-block",
+                                                            fontSize: "22px",
+                                                            color: "#1ea1ef",
+                                                            position: "absolute",
+                                                            right: "0",
+                                                            top: "0"
+                                                        }}></i> : ""
+                                                }
                                                 <p>{value.score == 0 ? "不满意" : value.score == 1 ? "一般" : "满意"}</p>
                                                 <p>{(value.add_time + '').split(" ")[0]}</p>
                                             </li>
@@ -76,7 +86,6 @@ export default class VisitList extends React.Component {
                             </ul>
                         </div>
                     </div>
-                </form>
             </div>
         )
     }
