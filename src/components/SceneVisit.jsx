@@ -384,12 +384,15 @@ export default class SceneVisit extends React.Component {
         for(let i = 0;i < ls.length;i++){
             let color = ls[i].style.backgroundColor;
             if(color == "#e2e2e2" || color == "rgb(226, 226, 226)" ){
-                name2.push(this.state.getPersonalList[i-1].real_name);
-                personalLis1.push(this.state.getPersonalList[i-1].user_id);
+                name2.push(this.state.toPersonalList[i-1].name);
+                personalLis1.push(this.state.toPersonalList[i-1].user_id);
             }
         }
-        this.setState({customer_ids:personalLis1.join("_"),name01:name2.join(",")}); 
-        this.onClose('modal4');       
+        this.setState({
+            customer_ids:personalLis1.join("_"),
+            name01:name2.join(",")
+        }); 
+        this.onClose('modal4')();
     }
     render() {
         return (
@@ -437,8 +440,8 @@ export default class SceneVisit extends React.Component {
                                     <td className="darkbg">受访人员</td>
                                     <td>
                                         {this.state.name01}
-                                        <i onClick={() => {
-                                            this.state.toPersonalList.length > 0 ? this.showModal('modal4') : Toast.info('暂无联系人', .8);
+                                        <i onClick={(e) => {
+                                            this.state.toPersonalList.length > 0 ? this.showModal('modal4')(e) : Toast.info('暂无联系人', .8);
                                         }}
                                             className="iconfont icon-jia"
                                             style={{

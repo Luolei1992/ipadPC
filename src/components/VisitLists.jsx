@@ -17,7 +17,10 @@ export default class VisitList extends React.Component {
                 }
             },
             backVisitDetail: {
-
+                item_list: [],
+                project_info: {
+                    master_name: ""
+                }
             }
         },
         this.handleBackVisitGet = (res) => {

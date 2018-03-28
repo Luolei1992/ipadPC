@@ -127,6 +127,12 @@ export default class NewSurveyHistory extends React.Component {
             this.props.route,
             this.routerWillLeave
         )
+        if(!validate.getCookie('user_id')){
+            runPromise('add_project_ex', {
+                offset:"0",
+                limit:"1"
+            }, ()=>{}, true, "post");
+        }
         init('allBox');
         init('suggest');
         readyDo(this.alerts);
